@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imaeil.mapper.UserMapper">
+	<select id="getUserId" resultType="com.imaeil.domain.UserVO">
+		SELECT 
+			* 
+		FROM 
+			WEB_USER
+		WHERE 1=1 
+			AND ID = #{id}  
+	</select>
+	
+	<select id="getUserSeq" resultType="com.imaeil.domain.UserVO">
+		SELECT 
+			* 
+		FROM 
+			WEB_USER 
+		WHERE 1=1 
+			AND SEQ = #{seq}
+	</select>
+</mapper>

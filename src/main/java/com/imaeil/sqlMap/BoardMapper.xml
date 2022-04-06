@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imaeil.mapper.BoardMapper">
+	<select id="selectBoards" resultType="com.imaeil.domain.BoardVO">
+		SELECT 
+			* 
+		FROM 
+			WEB_BOARD
+	</select>
+	
+	<select id="selectBoard" resultType="com.imaeil.domain.BoardVO">
+		SELECT 
+			* 
+		FROM 
+			WEB_BOARD 
+		WHERE 1=1
+			AND SEQ = #{seq}
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.imaeil.domain.BoardVO">
+		<selectKey keyProperty="seq" order="BEFORE" resultType="long">
+			SELECT SEQ_BOARD.NEXTVAL FROM DUAL		
+		</selectKey>
+		
+		INSERT INTO WEB_BOARD (
+			SEQ, 
+			TITLE, 
+			CONTENT, 
+			USE_YN, 
+			DEL_YN, 
+			REG_SEQ, 
+			UPD_SEQ
+		) VALUES (
+			#{seq}, 
+			#{title}, 
+			#{content}, 
+			#{use_yn}, 
+			#{del_yn}, 
+			#{userVO.seq}, 
+			#{userVO.seq}
+		)
+	</insert>
+	
+	<update id="updateBoard" parameterType="com.imaeil.domain.BoardVO">
+		UPDATE WEB_BOARD
+		SET
+			title = #{title},
+			content = #{content},
+			use_yn = #{use_yn},
+			del_yn = #{del_yn},
+			upd_seq = #{userVO.seq},
+			upd_date = SYSDATE
+		WHERE 1=1
+			AND seq = #{seq}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="com.imaeil.domain.BoardVO">
+		DELETE FROM WEB_BOARD 
+		WHERE 1=1
+			AND SEQ = #{seq}
+			AND REG_SEQ = #{userVO.seq}
+	</delete>
+</mapper>

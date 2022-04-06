@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imaeil.mapper.UserInfoMapper">
+	<select id="getUserInfo" resultType="com.imaeil.domain.UserInfoVO">
+		SELECT 
+			*
+		FROM
+			WEB_USER_INFO
+		WHERE 1=1
+			AND USER_SEQ = #{seq}  
+	</select>
+</mapper>
